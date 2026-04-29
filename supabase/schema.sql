@@ -14,6 +14,11 @@ create table if not exists public.transcription_jobs (
     transcript_path text,
     text text,
     segments jsonb not null default '[]'::jsonb,
+    words jsonb not null default '[]'::jsonb,
+    detected_language text,
+    language_confidence double precision
+        constraint transcription_jobs_language_confidence_check
+        check (language_confidence is null or (language_confidence >= 0 and language_confidence <= 1)),
     error jsonb,
     retry_count integer not null default 0 check (retry_count >= 0),
     provider_request_id text,
@@ -82,4 +87,3 @@ set
     public = excluded.public,
     file_size_limit = excluded.file_size_limit,
     allowed_mime_types = excluded.allowed_mime_types;
-
