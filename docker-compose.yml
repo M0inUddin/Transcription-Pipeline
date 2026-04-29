@@ -1,0 +1,23 @@
+services:
+  api:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  worker:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    command: celery -A app.workers.celery_app.celery_app worker -Q transcriptions --loglevel=INFO
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
