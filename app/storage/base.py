@@ -1,0 +1,19 @@
+from typing import Protocol
+
+from app.schemas import TranscriptionJob
+
+
+class StorageRepository(Protocol):
+    def create_job(self, job: TranscriptionJob) -> TranscriptionJob: ...
+
+    def get_job(self, job_id: str) -> TranscriptionJob | None: ...
+
+    def update_job(self, job_id: str, values: dict) -> TranscriptionJob: ...
+
+    def upload_audio(
+        self, job_id: str, filename: str, data: bytes, mime_type: str
+    ) -> str: ...
+
+    def upload_transcript(self, job_id: str, transcript: dict) -> str: ...
+
+    def download_audio(self, path: str) -> bytes: ...
