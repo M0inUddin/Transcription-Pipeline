@@ -2,8 +2,6 @@
 
 Async transcription API built with Python, FastAPI, Deepgram, Supabase, Celery, and Redis. The service accepts audio as a multipart file, remote URL, or base64 payload, creates a queued job, and returns normalized transcript text with timestamped segments, word-level timestamps, speaker labels, and detected language metadata.
 
-For direct answers to every question in `QUESTIONARE.md`, see [QUESTIONNAIRE_ANSWERS.md](QUESTIONNAIRE_ANSWERS.md).
-
 ## System Goals
 
 - Accept common audio inputs without authentication.
