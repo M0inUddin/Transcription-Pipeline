@@ -336,3 +336,7 @@ Successful response shape:
 - Signed upload URLs for direct-to-storage client uploads.
 - Job cancellation and retention cleanup.
 - Per-request Deepgram option overrides for teams that want to disable speaker, word, or language metadata on selected jobs.
+
+## Why This Project Matters
+
+This project demonstrates how to design an async AI service that separates API latency from long-running transcription jobs. It uses FastAPI for request handling, Celery and Redis for background processing, Supabase for persistence, and Deepgram for speech-to-text.
